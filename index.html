@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Alarm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/png" href="favicon-v2.png">
+
+</head>
+
+<body>
+    <header>
+        <div class="head">
+            <!-- <div class="clock-d"><img src="clock.png" alt="clock" class="clock-img" style="margin-right: 10px;"></div> -->
+            <h1>
+                Clocket
+            </h1>
+            <!-- <div class="clock-d"><img src="clock.png" alt="clock" class="clock-img" style="margin-left: 10px;"></div> -->
+            <div class="menu">
+                <span class="dots" onclick="toggleMenu()">&#x22EE;</span>
+                <div id="menuOptions" class="menu-options">
+                    <ul>
+                        <li>Screensaver</li>
+                        <li>Settings</li>
+                        <li>Privacy Policy</li>
+                        <li>Help</li>
+                        <li>Send Feedback</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- <nav> -->
+    <!-- <button onclick="showSection('clock')" class="box-c">Clock</button> -->
+    <!-- <button onclick="showSection('alarm')" class="box-c">
+            <div class="imge-icon"><img src="alarm.png" alt="alarm" class="image-imgicon"></div>
+        </button>
+        <button onclick="showSection('timer')" class="box-c">
+            <div class="imge-icon"><img src="timer.png" alt="timer" class="image-imgicon"></div>
+        </button>
+        <button onclick="showSection('stopwatch')" class="box-c">
+            <div class="imge-icon"><img src="stopwatch.png" alt="stopwatch" class="image-imgicon"></div>
+        </button>
+        <button onclick="showSection('bedtime')" class="box-c">
+            <div class="imge-icon"><img src="bedtime.png" alt="bedtime" class="image-imgicon"></div>
+        </button>
+        <button onclick="showSection('deviceHeating')" class="box-c">
+            <div class="imge-icon"><img src="heating.png" alt="heating" class="image-imgicon"></div>
+        </button>
+        <button onclick="showSection('noteReminder')" class="box-c">
+            <div class="imge-icon"><img src="reminder.png" alt="noteReminder" class="image-imgicon">
+            </div>
+        </button>
+    </nav> -->
+    <nav>
+        <div class="button-scroll">
+            <button onclick="showSection('alarm')" class="box-c" style="margin-left: 3px;">Alarm</button>
+            <button onclick="showSection('timer')" class="box-c">Timer</button>
+            <button onclick="showSection('stopwatch')" class="box-c">StopWatch</button>
+            <button onclick="showSection('bedtime')" class="box-c">BedTime</button>
+            <button onclick="showSection('deviceHeating')" class="box-c">DeviceHeating</button>
+            <button onclick="showSection('noteReminder')" class="box-c" style="margin-right: 3px;">NoteReminder</button>
+        </div>
+    </nav>
+
+    <main>
+
+        <div class="hero">
+            <div class="contener-box">
+                <div class="digital-w">
+                    <span id="hrs">00</span>
+                    <span>:</span>
+                    <span id="min">00</span>
+                    <span>:</span>
+                    <span id="sec">00</span>
+                </div>
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="bottom-k">
+
+            <section id="clock">
+                <h2 class="button-p">Time</h2>
+                <div id="currentTime" class="c-a"></div>
+                <div class="date-container" id="dateDiv"></div>
+            </section>
+            <section id="alarm">
+                <h2 class="button-p">Set Alarm</h2>
+                <span style="color: rgb(0, 242, 255); font-size: 20px;">
+                    <i class="fa-regular fa-clock"></i>
+                </span>
+                <input type="time" id="alarmTime" class="input-a">
+                <button onclick="setAlarm()" class="button-r">Set Alarm <span>
+                        <i class="fa-regular fa-bell"></i></span>
+                </button>
+            </section>
+
+            <section id="timer" class="timer-c">
+                <h2 class="button-p">Timer</h2>
+                <input type="number" id="timerMinutes" placeholder="Minutes" min="0" class="input-b">
+                <input type="number" id="timerSeconds" placeholder="Seconds" min="0" class="input-b">
+                <div id="timerDisplay" class="o" style="font-size: 2.7rem;">00:00</div>
+                <button onclick="startTimer()" class="button-r"><span><i class="fa-solid fa-play"></i></span></button>
+                <button onclick="pauseTimer()" class="button-r"><span><i class="fa-solid fa-pause"></i></span></button>
+                <button onclick="resumeTimer()" class="button-r"><span><i
+                            class="fa-solid fa-rotate-right"></span></i></button>
+                <button onclick="resetTimer()" class="button-r">Reset</button>
+            </section>
+
+            <section id="stopwatch">
+                <h2 class="button-p">Stopwatch</h2>
+                <div id="stopwatchDisplay" class="o-o">00:00:00:000</div>
+                <button id="startStopwatchButton" onclick="startStopwatch()" class="button-r"><span><i
+                            class="fa-solid fa-play"></span></i></button>
+                <button id="pauseStopwatchButton" onclick="pauseStopwatch()" style="display:none;"
+                    class="button-r"><span><i class="fa-solid fa-pause"></i></span></button>
+                <button id="resumeStopwatchButton" onclick="resumeStopwatch()" style="display:none;"
+                    class="button-r"><span><i class="fa-solid fa-rotate-right"></i></span></button>
+                <button onclick="resetStopwatch()" class="button-r">Reset</button>
+            </section>
+
+            <section id="bedtime" class="bed-a">
+                <i class="fa-solid fa-bed" id="sleep-b"></i></span>
+                <h2 class="button-p">Set Bedtime <span class="bed-d">
+                </h2>
+
+                <input type="time" id="bedtimeTime" class="input-a">
+                <button onclick="setBedtime()" class="button-r">Set Bedtime</button>
+                <div id="bedtimeReminder"></div>
+            </section>
+
+            <!-- Device Heating Section -->
+            <section id="deviceHeating">
+                <h2 class="button-p">Device Temperature Monitor</h2>
+                <div class="temp-display">
+                    <div id="tempDisplay" class="temp-value">--°C</div>
+                    <div id="tempWarning" class="temp-warning">Not Monitoring</div>
+                </div>
+                <button id="startTempButton" onclick="startTempMonitoring()" class="button-r">
+                    Start Monitoring <i class="fa-solid fa-temperature-high"></i>
+                </button>
+                <button id="stopTempButton" onclick="stopTempMonitoring()" class="button-r" style="display:none;">
+                    Stop Monitoring <i class="fa-solid fa-stop"></i>
+                </button>
+            </section>
+
+            <!-- Note Reminder Section -->
+            <section id="noteReminder">
+                <h2 class="button-p">Note Reminder</h2>
+                <div class="note-input-container">
+                    <input type="text" id="noteInput" placeholder="Enter your note" class="input-a textarea"
+                        oninput="expandinput(this)" />
+                    <input type="time" id="noteTime" class="input-a">
+                    <button onclick="addNote()" class="button-r">
+                        Add Note <i class="fa-solid fa-note-sticky"></i>
+                    </button>
+                </div>
+                <div id="notesList" class="notes-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <audio id="alarmSound" src="oversimplified-alarm-clock-113180.mp3"></audio>
+    <audio id="bedtimeSound" src="oversimplified-alarm-clock-113180.mp3"></audio>
+
+    <div id="stopButton" onclick="stopAudio()">Stop</div>
+    </div>
+    <script src="index.js">
+
+    </script>
+</body>
+
+</html>
